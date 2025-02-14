@@ -1,0 +1,71 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                0x0000000000007c00                phys = 0x7c00
+                0x0000000000007c00                . = phys
+
+.fsjump         0x0000000000007c00        0x3
+ *(.fsjump)
+ .fsjump        0x0000000000007c00        0x3 build/i686_debug/stage1_fat32/boot.o
+
+.fsheaders      0x0000000000007c03       0x57
+ *(.fsheaders)
+ .fsheaders     0x0000000000007c03       0x57 build/i686_debug/stage1_fat32/boot.o
+
+.entry          0x0000000000007c5a       0x83
+                0x0000000000007c5a                __entry_start = .
+ *(.entry)
+ .entry         0x0000000000007c5a       0x83 build/i686_debug/stage1_fat32/boot.o
+                0x0000000000007c5a                start
+
+.text           0x0000000000007ce0       0xa7
+ *(.text)
+ .text          0x0000000000007ce0       0xa7 build/i686_debug/stage1_fat32/boot.o
+
+.data           0x0000000000007d88       0x2f
+ *(.data)
+ .data          0x0000000000007d88       0x2f build/i686_debug/stage1_fat32/boot.o
+                0x0000000000007d99                stage2_location
+
+.rodata         0x0000000000007db8       0x32
+ *(.rodata)
+ .rodata        0x0000000000007db8       0x32 build/i686_debug/stage1_fat32/boot.o
+
+.bios_footer    0x0000000000007dfe        0x2
+                0x0000000000007dfe        0x2 SHORT 0xaa55
+
+.bss            0x0000000000007e00      0x200
+ *(.bss)
+ .bss           0x0000000000007e00      0x200 build/i686_debug/stage1_fat32/boot.o
+LOAD build/i686_debug/stage1_fat32/boot.o
+LOAD .toolchains/i686-elf/lib/gcc/i686-elf/11.2.0/libgcc.a
+OUTPUT(build/i686_debug/stage1_fat32/stage1.bin binary)
+
+.debug_aranges  0x0000000000000000       0x20
+ .debug_aranges
+                0x0000000000000000       0x20 build/i686_debug/stage1_fat32/boot.o
+
+.debug_pubnames
+                0x0000000000000000        0x0
+ .debug_pubnames
+                0x0000000000000000        0x0 build/i686_debug/stage1_fat32/boot.o
+
+.debug_info     0x0000000000000000       0x89
+ .debug_info    0x0000000000000000       0x89 build/i686_debug/stage1_fat32/boot.o
+
+.debug_abbrev   0x0000000000000000       0x1d
+ .debug_abbrev  0x0000000000000000       0x1d build/i686_debug/stage1_fat32/boot.o
+
+.debug_line     0x0000000000000000       0xb5
+ .debug_line    0x0000000000000000       0xb5 build/i686_debug/stage1_fat32/boot.o
+
+.debug_frame    0x0000000000000000        0x0
+ .debug_frame   0x0000000000000000        0x0 build/i686_debug/stage1_fat32/boot.o
+
+.debug_loc      0x0000000000000000        0x0
+ .debug_loc     0x0000000000000000        0x0 build/i686_debug/stage1_fat32/boot.o
